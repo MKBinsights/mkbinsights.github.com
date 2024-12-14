@@ -162,6 +162,7 @@
         allowfullscreen>
     </iframe>
     <h2>HARVESTING SEASON OF PADDY & LATEST TECHNIQUE ADOPTED BY THE FARMERS| LEPARADA DISTRICT BASAR🌾🌾by <a href="https://www.youtube.com/@kennyg1978">MKB Insights on youtube</a>
+    
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -187,32 +188,55 @@
    <marquee>DISCLAIMER : MKB Insights is not a registered companey and does not collect user data. THE WEBSITE IS MADE BY KENZO BASAR AND THE DESIGN IS NOT COPIED OR STOLEN. If you have any doubts, email at mkbinsights@gmail.com</marquee>
 </div>
 <script>
-  // Get the modal
+  // Get the modal for bookings
   var modal = document.getElementById("myModal");
 
-  // Get the button that opens the modal
+  // Get the button that opens the booking modal
   var btn = document.getElementById("openModal");
 
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
+  // Get the modal for reviews
+  var reviewsModal = document.getElementById("reviewsModal");
 
-  // When the user clicks the button, open the modal 
+  // Get the button that opens the reviews modal
+  var reviewsBtn = document.getElementById("openModal2");
+
+  // Get the <span> element that closes the booking modal
+  var bookingClose = modal.querySelector(".close");
+
+  // Get the <span> element that closes the reviews modal
+  var reviewsClose = reviewsModal.querySelector(".close");
+
+  // When the user clicks the button, open the booking modal
   btn.onclick = function() {
     modal.style.display = "block";
-  }
+  };
 
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
+  // When the user clicks the button, open the reviews modal
+  reviewsBtn.onclick = function() {
+    reviewsModal.style.display = "block";
+  };
+
+  // When the user clicks on <span> (x), close the booking modal
+  bookingClose.onclick = function() {
     modal.style.display = "none";
-  }
+  };
 
-  // When the user clicks anywhere outside of the modal, close it
+  // When the user clicks on <span> (x), close the reviews modal
+  reviewsClose.onclick = function() {
+    reviewsModal.style.display = "none";
+  };
+
+  // When the user clicks anywhere outside the modal, close it
   window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
       modal.style.display = "none";
     }
-  }
+    if (event.target === reviewsModal) {
+      reviewsModal.style.display = "none";
+    }
+  };
 </script>
+
 
 <script>
   // Get the modal
