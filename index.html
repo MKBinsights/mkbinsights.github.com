@@ -11,6 +11,55 @@
      body {    
       font-family: Arial;
      }
+    /* Fullscreen Modal Styling */
+    #notification-modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+      color: #fff;
+      overflow: auto;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    #notification-modal h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    #notification-modal .notification {
+      background: #f9c74f;
+      color: #333;
+      padding: 15px;
+      margin: 10px auto;
+      border-radius: 10px;
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    #close-modal, #open-modal {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    #close-modal:hover, #open-modal:hover {
+      background: #555;
+    }
      h1 {
       font-size: 4rem;
      }
@@ -120,31 +169,106 @@
         <button id="openModal">Book</button>
 
     </div> 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+
+<!-- Button to open the modal -->
+<button id="open-modal">Show Notifications</button>
+
+<!-- Fullscreen Modal -->
+<div id="notification-modal">
+  <h2>🔔 Live Notifications</h2>
+  <div id="notifications-container"></div>
+  <button id="close-modal">Close</button>
+</div>
+
+<script>
+  // URL of the news.txt file in the GitHub repository
+  const newsFileUrl = 'https://raw.githubusercontent.com/<username>/<repository>/main/news.txt';
+
+  // Fetch and Display Notifications
+  async function fetchNotifications() {
+    try {
+      const response = await fetch(newsFileUrl);
+      if (!response.ok) throw new Error('Failed to fetch notifications.');
+
+      const text = await response.text();
+      const notifications = text.split('\n').filter(line => line.trim() !== '');
+
+      // Clear previous notifications
+      const container = document.getElementById('notifications-container');
+      container.innerHTML = '';
+
+      // Add notifications to the modal
+      notifications.forEach(message => {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerText = `🎉 ${message}`;
+        container.appendChild(notification);
+      });
+
+      // Show the modal
+      document.getElementById('notification-modal').style.display = 'block';
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  }
+
+  // Close Modal Button Event
+  document.getElementById('close-modal').addEventListener('click', () => {
+    document.getElementById('notification-modal').style.display = 'none';
+  });
+
+  // Open Modal Button Event
+  document.getElementById('open-modal').addEventListener('click', () => {
+    fetchNotifications(); // Fetch and display notifications when the modal is opened
+  });
+
+  // Fetch notifications every 30 seconds
+  setInterval(fetchNotifications, 30000);
+</script>
+
+<script>
+  // URL of the news.txt file in the GitHub repository
+  const newsFileUrl = 'https://raw.githubusercontent.com/MKBinsights/mkbinsights.github.io/main/news.txt';
+
+  // Fetch and Display Notifications
+  async function fetchNotifications() {
+    try {
+      const response = await fetch(newsFileUrl);
+      if (!response.ok) throw new Error('Failed to fetch notifications.');
+
+      const text = await response.text();
+      const notifications = text.split('\n').filter(line => line.trim() !== '');
+
+      // Clear previous notifications
+      const container = document.getElementById('notifications-container');
+      container.innerHTML = '';
+
+      // Add notifications to the modal
+      notifications.forEach(message => {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerText = `🎉 ${message}`;
+        container.appendChild(notification);
+      });
+
+      // Show the modal
+      document.getElementById('notification-modal').style.display = 'block';
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  }
+
+  // Close Modal Button Event
+  document.getElementById('close-modal').addEventListener('click', () => {
+    document.getElementById('notification-modal').style.display = 'none';
+  });
+
+  // Fetch notifications every 30 seconds
+  setInterval(fetchNotifications, 30000);
+  fetchNotifications(); // Fetch immediately on page load
+</script>
+
 <br>
 <br>
 <br>
